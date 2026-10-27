@@ -1,9 +1,74 @@
 import { useState } from "react";
-import { Link, NavLink, BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
+
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Cart from "./pages/Cart";
 import "./App.css";
 
 function Website() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [cart, setCart] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("pipepro-cart")) || [];
+    } catch {
+      return [];
+    }
+  });
+
+  const addToCart = (product) => {
+    setCart((current) => {
+      const existing = current.find((item) => item.id === product.id);
+
+      const updated = existing
+        ? current.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        : [...current, { ...product, quantity: 1 }];
+
+      localStorage.setItem("pipepro-cart", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const updateQuantity = (id, amount) => {
+    setCart((current) => {
+      const updated = current
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: item.quantity + amount }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
+
+      localStorage.setItem("pipepro-cart", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCart((current) => {
+      const updated = current.filter((item) => item.id !== id);
+      localStorage.setItem("pipepro-cart", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const cartCount = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -46,19 +111,53 @@ function Website() {
             className="navbar-cart"
             onClick={closeMenu}
           >
-            🛒 Cart <span>0</span>
+            🛒 Cart <span>{cartCount}</span>
           </Link>
         </nav>
       </header>
 
-      {/* EMPTY CONTENT AREA */}
-      <main className="page-content"></main>
+      {/* PAGES */}
+      <main className="page-content">
+        <Routes>
+          <Route
+            path="/"
+            element={<Home addToCart={addToCart} />}
+          />
+
+          <Route
+            path="/products"
+            element={<Products addToCart={addToCart} />}
+          />
+
+          <Route path="/about" element={<About />} />
+
+          <Route path="/contact" element={<Contact />} />
+
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                cart={cart}
+                updateQuantity={updateQuantity}
+                removeFromCart={removeFromCart}
+              />
+            }
+          />
+
+          {/* Any unknown URL opens Home */}
+          <Route path="*" element={<Home addToCart={addToCart} />} />
+        </Routes>
+      </main>
 
       {/* FOOTER */}
       <footer className="footer">
         <div className="footer-main">
           <div className="footer-about">
-            <Link to="/" className="brand footer-brand">
+            <Link
+              to="/"
+              className="brand footer-brand"
+              onClick={closeMenu}
+            >
               🔧 PIPE<span className="brand-blue">PRO</span>
             </Link>
 
