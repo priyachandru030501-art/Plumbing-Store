@@ -132,17 +132,6 @@ function Website() {
               />
             }
           />
-          <Route
-            path="*"
-            element={
-              <div className="not-found">
-                <h2>Page Not Found</h2>
-                <Link to="/" className="site-button">
-                  Back to Home
-                </Link>
-              </div>
-            }
-          />
         </Routes>
       </div>
 
