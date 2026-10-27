@@ -63,6 +63,7 @@ main {
 /* Footer */
 .footer {
   width: 100%;
+  align-items: center;
   padding: 40px 7% 20px;
   margin-top: 40px;
   background: #102b46;
