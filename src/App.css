@@ -60,68 +60,44 @@ main {
   min-height: 65vh;
 }
 
-/* Footer */
 .footer {
   width: 100%;
-  align-items: center;
-  padding: 40px 7% 20px;
+  padding: 40px 20px 20px;
   margin-top: 40px;
   background: #102b46;
-  color: #ffffff;
+  color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer h3 {
-  font-size: 27px;
   color: #58b8ff;
+  font-size: 28px;
   margin-bottom: 12px;
 }
 
 .footer p {
-  margin: 12px 0;
-  color: #d7e4f0;
+  text-align: center;
   line-height: 1.7;
+  margin: 10px 0;
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 24px;
-  margin: 22px 0;
+  margin: 20px 0;
 }
 
 .footer-links a {
-  color: #ffffff;
-  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
 }
 
 .footer-links a:hover {
   color: #58b8ff;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    padding: 18px 15px;
-  }
-
-  .navbar-logo {
-    font-size: 26px;
-  }
-
-  .navbar-links {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .navbar-links a {
-    font-size: 14px;
-  }
-
-  .footer {
-    padding: 30px 15px 18px;
-  }
 }
