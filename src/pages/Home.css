@@ -186,25 +186,99 @@
 
 .home-button-light:hover { color: #103e78; background: #e5f1ff; }
 
-@media (max-width: 900px) {
-  .home-hero { padding: 55px 6%; }
-  .home-featured { padding: 60px 6%; }
-  .home-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Tablet Responsive */
+@media screen and (max-width: 768px) {
+  .home,
+  .home-page {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    padding: 50px 25px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    line-height: 1.3;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .features,
+  .benefits,
+  .product-grid,
+  .featured-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .section {
+    padding: 40px 20px;
+  }
+
+  .section h2 {
+    font-size: 28px;
+  }
 }
 
-@media (max-width: 600px) {
-  .home-hero { grid-template-columns: 1fr; text-align: center; }
-  .home-hero-content > p:not(.home-label) { margin-left: auto; margin-right: auto; }
-  .home-art-circle { width: 250px; }
-  .home-benefits { grid-template-columns: 1fr; gap: 25px; }
-  .home-section-heading h2 { font-size: 29px; }
-  .home-product-grid { gap: 12px; }
-  .home-product-art { height: 125px; font-size: 48px; }
-  .home-product-info { padding: 12px; }
-  .home-product-info h3 { font-size: 13px; }
-  .home-cta { margin: 0 5% 50px; padding: 25px; align-items: flex-start; flex-direction: column; }
-}
+/* Mobile Responsive */
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 35px 16px;
+  }
 
-@media (max-width: 360px) {
-  .home-product-grid { grid-template-columns: 1fr; }
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hero img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .features,
+  .benefits,
+  .product-grid,
+  .featured-products {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .section {
+    padding: 30px 16px;
+  }
+
+  .section h2 {
+    font-size: 24px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero button,
+  .hero .btn,
+  .hero a {
+    max-width: 100%;
+  }
 }
